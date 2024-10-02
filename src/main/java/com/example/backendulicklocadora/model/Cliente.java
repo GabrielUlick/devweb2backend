@@ -1,5 +1,6 @@
 package com.example.backendulicklocadora.model;
 
+import java.util.Date;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -9,12 +10,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Classe {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -23,8 +25,9 @@ public class Classe {
     @Column(length = 100)
     private String nome;
 
-    private double valor;
+    private Date dtNascimento;
 
-    private int prazoDevolucao;
+    private char sexo;
 
+    private boolean ativo;
 }
