@@ -1,5 +1,7 @@
 package com.example.backendulicklocadora.atendimento.service;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -17,4 +19,11 @@ public class SocioService extends GenericService<Socio, SocioRepository> {
         super(repositoryGenerics);
     }
     
+    public Void exclusaoLogica(UUID id) {
+        Socio socio = this.repositoryGenerics.findById(id).get();
+        socio.SwitchAtivo();
+        this.repositoryGenerics.save(socio);
+        return null;
+    }
+
 }

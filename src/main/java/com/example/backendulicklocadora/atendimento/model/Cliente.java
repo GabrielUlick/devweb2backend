@@ -30,4 +30,8 @@ public class Cliente {
     private char sexo;
 
     private boolean ativo;
+
+    public void SwitchAtivo() {
+        this.ativo = !this.ativo;
+    }
 }
