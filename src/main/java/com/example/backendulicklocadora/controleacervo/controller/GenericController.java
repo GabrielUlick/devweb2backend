@@ -3,6 +3,7 @@ package com.example.backendulicklocadora.controleacervo.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,26 +32,26 @@ public abstract class GenericController<TipoEntidade> {
 
     @GetMapping
     @GenericOperation(description = "Listar todos os registros")
-    public List<TipoEntidade> listar() {
-        return genericService.listar();
+    public ResponseEntity<List<TipoEntidade>> listar() {
+        return ResponseEntity.ok().body(genericService.listar());
     }
 
     @GetMapping("/{id}")
     @GenericOperation(description = "Buscar um registro por ID")
-    public TipoEntidade buscarPorId(@PathVariable UUID id) {
-        return genericService.buscarPorId(id);
+    public ResponseEntity<TipoEntidade> buscarPorId(@PathVariable UUID id) {
+        return ResponseEntity.ok().body(genericService.buscarPorId(id));
     }
 
     @PostMapping
     @GenericOperation(description = "Criar um registro")
-    public TipoEntidade criar(@RequestBody TipoEntidade entity) {
-        return genericService.criar(entity);
+    public ResponseEntity<TipoEntidade> criar(@RequestBody TipoEntidade entity) {
+        return ResponseEntity.ok().body(genericService.criar(entity));
     }
 
     @PutMapping("/{id}")
     @GenericOperation(description = "Atualizar um registro")
-    public TipoEntidade atualizar(@PathVariable @Positive UUID id, @RequestBody TipoEntidade entity) {
-        return genericService.atualizar(id, entity);
+    public  ResponseEntity<TipoEntidade> atualizar(@PathVariable @Positive UUID id, @RequestBody TipoEntidade entity) {
+        return ResponseEntity.ok().body(genericService.atualizar(id, entity));
     }
 
     @DeleteMapping("/{id}")

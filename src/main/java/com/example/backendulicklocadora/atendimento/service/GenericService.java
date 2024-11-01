@@ -31,7 +31,7 @@ public abstract class GenericService<TipoEntidade, RepositorioGenerics extends J
     @Override
     public TipoEntidade buscarPorId(UUID id) {
         try {
-            return repositoryGenerics.findById(id).orElseThrow(() -> new RegistroNotFoundException(id));
+            return repositoryGenerics.findById(id).orElseThrow(() -> new RegistroNotFoundException("Registro não encontrado"));
         } catch (RegistroNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public abstract class GenericService<TipoEntidade, RepositorioGenerics extends J
     @Override
     public void excluir(UUID id) {
         try {
-            TipoEntidade entity = repositoryGenerics.findById(id).orElseThrow(() -> new RegistroNotFoundException(id));
+            TipoEntidade entity = repositoryGenerics.findById(id).orElseThrow(() -> new RegistroNotFoundException("Registro não encontrado"));
             repositoryGenerics.delete(entity);
         } catch (RegistroNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
@@ -65,7 +65,7 @@ public abstract class GenericService<TipoEntidade, RepositorioGenerics extends J
     @Override
     public TipoEntidade atualizar(UUID id, TipoEntidade entityAtualizada) {
         try {
-            TipoEntidade entity = repositoryGenerics.findById(id).orElseThrow(() -> new RegistroNotUpdated(id));
+            TipoEntidade entity = repositoryGenerics.findById(id).orElseThrow(() -> new RegistroNotFoundException("Registro não encontrado"));
             entity = entityAtualizada;
             return repositoryGenerics.save(entity);
         } catch (RegistroNotUpdated e) {
