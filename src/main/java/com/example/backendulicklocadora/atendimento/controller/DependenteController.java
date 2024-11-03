@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backendulicklocadora.atendimento.model.Dependente;
 import com.example.backendulicklocadora.atendimento.service.DependenteService;
-import com.example.backendulicklocadora.atendimento.service.dto.DependenteDTO;
+
 
 @Validated
 @RestController
@@ -25,9 +25,9 @@ public class DependenteController extends GenericController<Dependente> {
         this.dependenteService = dependenteService;
     }
 
-    @GetMapping("/comSocios")
-    public List<DependenteDTO> listarDependentesComSocios() {
-        return dependenteService.listarDependentesComSocios();
-    }
+    // @GetMapping("/comSocios")
+    // public List<Dependente> listarDependentesComSocios() {
+    //     return dependenteService.listarDependentesComSocios();
+    // }
 
 }
