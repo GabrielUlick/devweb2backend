@@ -27,9 +27,15 @@ public class SocioController extends GenericController<Socio> {
     }
 
     @DeleteMapping("/ativo/{id}")
-    @GenericOperation(description = "Exclusão lógica de um registro")
+    @GenericOperation(description = "Exclusão lógica de um Sócio e seus dependentes")
     public void exclusaoLogica(@PathVariable UUID id) {
         socioService.exclusaoLogica(id);
+    }
+
+    @DeleteMapping("/exclusaoGeral/{id}")
+    @GenericOperation(description = "Exclusão de um Sócio e seus dependentes")
+    public void exclusaoSociosEDependentes(@PathVariable UUID id) {
+        socioService.exclusaoSociosEDependentes(id);
     }
 
 }

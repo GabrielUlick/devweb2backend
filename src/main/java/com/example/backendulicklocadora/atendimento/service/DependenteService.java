@@ -1,24 +1,30 @@
 package com.example.backendulicklocadora.atendimento.service;
 
-import java.util.UUID;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import com.example.backendulicklocadora.atendimento.model.Dependente;
 import com.example.backendulicklocadora.atendimento.repository.DependenteRepository;
+import com.example.backendulicklocadora.atendimento.service.dto.DependenteDTO;
+import com.example.backendulicklocadora.atendimento.service.mapper.DependenteMapper;
+import com.example.backendulicklocadora.atendimento.service.util.CycleAvoidingMappingContext;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Validated
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @Tag(name = "DependenteService", description = "Acesso aos métodos de Dependente")
 public class DependenteService extends GenericService<Dependente, DependenteRepository> {
-    
+
+    @Autowired
+    private DependenteMapper dependenteMapper;
+
     protected DependenteService(DependenteRepository repositoryGenerics) {
         super(repositoryGenerics);
     }
-    
+
     public Void exclusaoLogica(UUID id) {
         Dependente dependente = this.repositoryGenerics.findById(id).get();
         dependente.SwitchAtivo();
@@ -26,4 +32,8 @@ public class DependenteService extends GenericService<Dependente, DependenteRepo
         return null;
     }
 
+    public List<DependenteDTO> listarDependentesComSocios() {
+        CycleAvoidingMappingContext context = new CycleAvoidingMappingContext();
+        return dependenteMapper.toDTO(this.repositoryGenerics.findAll(), context);
+    }
 }
