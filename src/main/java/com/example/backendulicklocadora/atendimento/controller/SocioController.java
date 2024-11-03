@@ -1,10 +1,12 @@
 package com.example.backendulicklocadora.atendimento.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,11 @@ public class SocioController extends GenericController<Socio> {
     @GenericOperation(description = "Exclusão de um Sócio e seus dependentes")
     public void exclusaoSociosEDependentes(@PathVariable UUID id) {
         socioService.exclusaoSociosEDependentes(id);
+    }
+
+    @GetMapping("/menosDe3Dependentes")
+    public List<Socio> listarSociosComMenosDe3Dependentes() {
+        return socioService.listarSociosComMenosDe3Dependentes();
     }
 
 }

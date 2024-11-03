@@ -51,8 +51,8 @@ public class SocioService extends GenericService<Socio, SocioRepository> {
         return null;
     }
 
-    // public List<Socio> listarSociosComMenosDe3Dependentes()  {
-    //     return this.repositoryGenerics.findByDependentesCountLessThan(3);
-    // }
+    public List<Socio> listarSociosComMenosDe3Dependentes()  {
+        return this.repositoryGenerics.findBySociosComMenosDe3Dependentes();
+    }
 
 }
