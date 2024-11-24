@@ -9,10 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.backendulicklocadora.atendimento.model.Dependente;
 
 
-
 @Repository
 public interface DependenteRepository extends JpaRepository<Dependente, UUID> {
-
     List<Dependente> findBySocioId(UUID id);
-
 }
