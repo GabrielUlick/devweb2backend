@@ -1,5 +1,6 @@
 package com.example.backendulicklocadora.controleacervo.repository;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +10,7 @@ import com.example.backendulicklocadora.controleacervo.model.Titulo;
 
 @Repository
 public interface TituloRepository extends JpaRepository<Titulo, UUID> {
-
+    List<Titulo> findByNomeContainingIgnoreCase(String nome);
+    List<Titulo> findByCategoriaContainingIgnoreCase(String categoria);
+    List<Titulo> findByAtorId(UUID atorId);
 }
